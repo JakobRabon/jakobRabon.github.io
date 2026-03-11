@@ -1215,4 +1215,24 @@
       document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
       document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
       tab.classList.add('active');
+<<<<<<<< HEAD:index.html.html
       
+========
+      document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  document.getElementById('cw-btn') && document.getElementById('cw-btn').addEventListener('click', function() {
+    document.getElementById('cw-modal').classList.add('open');
+  });
+  document.getElementById('cw-close') && document.getElementById('cw-close').addEventListener('click', function() {
+    document.getElementById('cw-modal').classList.remove('open');
+  });
+  document.getElementById('cw-modal') && document.getElementById('cw-modal').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+  });
+</script>
+
+</body>
+</html>
+>>>>>>>> 1f3d72e25fa3f7b785ddbbbe3f1aa237c36912f8:index.html
