@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jakob P. Rabon — Computer Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --black: #111111;
+      --white: #ffffff;
+      --off: #f5f4f1;
+      --border: #d8d4cc;
+      --muted: #777;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Lato', sans-serif;
+      --mono: 'Source Code Pro', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--off);
+      color: var(--black);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    /* ── FRAME ── */
+    .frame {
+      max-width: 860px;
+      margin: 40px auto 80px;
+      filter: drop-shadow(0 8px 40px rgba(0,0,0,0.13));
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: #1a2332;
+      border-radius: 6px 6px 0 0;
+      padding: 28px 40px 26px;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .avatar {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: #2e5ce6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 22px;
+      color: #fff;
+      flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,0.15);
+    }
+
+    .header-info { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+
+    .header-name {
+      font-family: var(--serif);
+      font-size: 26px;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .header-name em { font-style: italic; }
+
+    .header-major {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      font-weight: 300;
+    }
+
+    .header-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px 0;
+      margin-top: 4px;
+    }
+
+    .header-row a,
+    .header-row span.hitem {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      transition: color 0.18s;
+      padding: 0 12px 0 0;
+    }
+
+    .header-row a:hover { color: #fff; }
+
+    .header-sep {
+      color: rgba(255,255,255,0.2);
+      font-size: 13px;
+      padding-right: 12px;
+      user-select: none;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      font-weight: 600;
+      font-family: var(--sans);
+      text-decoration: none;
+      color: #fff;
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid rgba(255,255,255,0.3);
+      transition: all 0.18s;
+      white-space: nowrap;
+      cursor: pointer;
+      margin-left: 4px;
+    }
+
+    .btn-download:hover {
+      background: rgba(255,255,255,0.18);
+      border-color: rgba(255,255,255,0.55);
+      color: #fff;
+    }
+
+    /* ── TABS ── */
+    .tab-row {
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      z-index: 2;
+      background: #111e2e;
+      padding: 0 40px;
+      border-left: 1.5px solid #0d1724;
+      border-right: 1.5px solid #0d1724;
+    }
+
+    .tab {
+      height: 44px;
+      padding: 0 22px;
+      background: transparent;
+      border: none;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      transition: color 0.18s;
+      user-select: none;
+      position: relative;
+      border-bottom: 2px solid transparent;
+    }
+
+    .tab:hover { color: rgba(255,255,255,0.75); }
+
+    .tab.active {
+      color: #fff;
+      border-bottom: 2px solid #2e5ce6;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 6px 6px;
+      min-height: 500px;
+    }
+
+    .panel { display: none; animation: fadeIn 0.22s ease; }
+    .panel.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-inner { padding: 44px 52px 52px; }
+
+    hr.divider { border: none; border-top: 1.5px solid var(--border); margin: 32px 0; }
+
+    /* ── SECTION HEADING ── */
+    .section-heading {
+      font-family: var(--serif);
+      font-size: 28px;
+      margin-bottom: 36px;
+      line-height: 1.2;
+    }
+    .section-heading em { font-style: italic; color: var(--muted); }
+
+    /* ══ ABOUT ══ */
+    .about-intro {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #2c3a50;
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    .about-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .about-card {
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      padding: 20px;
+      background: var(--off);
+    }
+
+    .about-card-icon { font-size: 20px; margin-bottom: 10px; }
+
+    .about-card-title {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .about-card-sub { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    .seeking-box {
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      padding: 20px 24px;
+      background: var(--off);
+    }
+
+    .seeking-title {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .seeking-text { font-size: 13.5px; color: #444; line-height: 1.65; }
+
+    /* ══ EDUCATION ══ */
+    .edu-hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+
+    .name-eyebrow {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .school-block {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 26px 30px;
+      background: var(--off);
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      margin-bottom: 28px;
+      gap: 24px;
+    }
+
+    .school-name { font-family: var(--serif); font-size: 22px; margin-bottom: 4px; }
+    .school-degree { font-size: 13px; color: var(--muted); }
+    .school-right { text-align: right; }
+
+    .school-grad {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .gpa-row { display: flex; gap: 14px; justify-content: flex-end; }
+
+    .gpa-box {
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      padding: 12px 20px;
+      text-align: center;
+      background: var(--white);
+    }
+
+    .gpa-val { font-family: var(--serif); font-size: 28px; line-height: 1; margin-bottom: 4px; }
+
+    .gpa-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .coursework-title {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .course-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .course-tag {
+      border: 1.5px solid var(--border);
+      border-radius: 3px;
+      padding: 5px 12px;
+      font-size: 13px;
+    }
+
+    /* ══ SKILLS ══ */
+    .skill-group { margin-bottom: 30px; }
+
+    .skill-group-title {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .chip {
+      padding: 7px 16px;
+      border: 1.5px solid var(--black);
+      border-radius: 2px;
+      font-size: 13px;
+      cursor: default;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .chip:hover { background: var(--black); color: var(--white); }
+
+    /* ══ EXPERIENCE ══ */
+    .exp-entry {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 0 32px;
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .exp-entry:last-child { border-bottom: 1px solid var(--border); }
+
+    .exp-date-range {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--muted);
+      line-height: 1.6;
+      padding-top: 3px;
+    }
+
+    .exp-loc { font-family: var(--mono); font-size: 10px; color: #aaa; margin-top: 4px; }
+    .exp-co { font-family: var(--serif); font-size: 20px; margin-bottom: 3px; }
+
+    .exp-role-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+
+    .exp-bullets li {
+      display: flex;
+      gap: 10px;
+      font-size: 14px;
+      color: #333;
+      line-height: 1.55;
+    }
+
+    .exp-bullets li::before { content: '—'; color: var(--muted); flex-shrink: 0; }
+
+    /* ══ PROJECTS ══ */
+    .proj-item { padding: 28px 0; border-top: 1px solid var(--border); }
+    .proj-item:last-child { border-bottom: 1px solid var(--border); }
+
+    .proj-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+
+    .proj-title { font-family: var(--serif); font-size: 20px; }
+    .proj-num { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.1em; }
+
+    .proj-desc { font-size: 14px; color: #444; line-height: 1.6; margin-bottom: 14px; max-width: 600px; }
+
+    .proj-tech { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .tech-badge {
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 3px 9px;
+      background: var(--off);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: #555;
+    }
+
+
+    /* ══ COURSEWORK MODAL ══ */
+    .cw-btn {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #2e5ce6;
+      background: none;
+      border: 1.5px solid #2e5ce6;
+      border-radius: 3px;
+      padding: 6px 14px;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+    .cw-btn:hover { background: #2e5ce6; color: #fff; }
+
+    .cw-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .cw-modal-overlay.open { display: flex; animation: fadeIn 0.2s ease; }
+
+    .cw-modal-box {
+      background: var(--white);
+      border-radius: 8px;
+      width: 100%;
+      max-width: 720px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    }
+
+    .cw-modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 24px 28px 20px;
+      border-bottom: 1.5px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .cw-modal-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      margin-bottom: 3px;
+    }
+
+    .cw-modal-sub {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    .cw-modal-close {
+      background: none;
+      border: none;
+      font-size: 18px;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 4px;
+      transition: all 0.15s;
+      line-height: 1;
+    }
+    .cw-modal-close:hover { background: var(--off); color: var(--black); }
+
+    .cw-modal-body {
+      padding: 24px 28px 28px;
+      overflow-y: auto;
+    }
+
+    /* ══ COURSEWORK GRID ══ */
+    .cw-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px 40px;
+    }
+
+    .cw-group-title {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #2e5ce6;
+      margin-bottom: 10px;
+    }
+
+    .cw-group--highlight .cw-group-title { color: #2e5ce6; }
+
+    .cw-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .cw-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 0;
+      font-size: 13.5px;
+      line-height: 1.4;
+    }
+
+    .cw-name {
+      color: var(--black);
+      flex-shrink: 0;
+    }
+
+    .cw-name::after {
+      content: ' —';
+      color: var(--border);
+      margin-right: 6px;
+    }
+
+    .cw-code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .cw-inprogress {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: #888;
+      font-style: normal;
+    }
+
+    .proj-github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 4px 12px;
+      transition: all 0.18s;
+    }
+    .proj-github-link:hover { color: var(--black); border-color: var(--black); background: var(--off); }
+
+    /* ══ REFERENCES ══ */
+    .ref-cards { display: flex; flex-direction: column; gap: 16px; }
+
+    .ref-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 24px 28px;
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      background: var(--off);
+      transition: border-color 0.18s;
+    }
+
+    .ref-card:hover { border-color: #aaa; }
+
+    .ref-initials {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #1a2332;
+      color: #fff;
+      font-family: var(--serif);
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .ref-name { font-family: var(--serif); font-size: 19px; margin-bottom: 2px; }
+
+    .ref-role { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+
+    .ref-relationship {
+      font-size: 13px;
+      color: #444;
+      font-style: italic;
+      margin-bottom: 12px;
+      padding-left: 10px;
+      border-left: 2px solid var(--border);
+    }
+
+    .ref-contact { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+
+    .ref-contact a {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.18s;
+    }
+
+    .ref-contact a:hover { color: var(--black); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .frame { margin: 0; }
+      .site-header {
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        padding: 24px 20px;
+        gap: 16px;
+      }
+      .header-actions {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .card { border-radius: 0; }
+      .panel-inner { padding: 28px 20px 40px; }
+      .about-cards { grid-template-columns: 1fr; }
+      .tab-row { padding: 0 12px; overflow-x: auto; }
+      .tab { padding: 0 14px; font-size: 10px; white-space: nowrap; }
+      .exp-entry { grid-template-columns: 1fr; }
+      .exp-date-range { margin-bottom: 6px; }
+      .school-block { flex-direction: column; align-items: flex-start; }
+      .school-right { text-align: left; }
+      .gpa-row { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="frame">
+
+  <!-- ── HEADER ── -->
+  <header class="site-header">
+    <div class="avatar">JR</div>
+    <div class="header-info">
+      <div class="header-name">Jakob <em>P.</em> Rabon</div>
+      <div class="header-major">Computer Engineering &nbsp;·&nbsp; Auburn University &nbsp;·&nbsp; Graduation Spring 2026</div>
+      <div class="header-row">
+        <a href="mailto:jrabon03@gmail.com">✉ jrabon03@gmail.com</a>
+        <span class="header-sep">·</span>
+        <a href="tel:8507561298">📞 (850) 756-1298</a>
+        <span class="header-sep">·</span>
+        <span class="hitem">📍 Auburn, AL</span>
+        <span class="header-sep">·</span>
+        <a href="https://www.linkedin.com/in/jakob-rabon/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="opacity:0.8;flex-shrink:0;"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+        <span class="header-sep">·</span>
+        <a class="btn-download" href="Jakob_Rabon-Resume.pdf" download="Jakob_Rabon-Resume.pdf">⬇ Download Resume</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── TABS ── -->
+  <div class="tab-row">
+    <div class="tab active" data-tab="about">About</div>
+    <div class="tab" data-tab="education">Education</div>
+    <div class="tab" data-tab="skills">Skills</div>
+    <div class="tab" data-tab="experience">Experience</div>
+    <div class="tab" data-tab="projects">Projects</div>
+    <div class="tab" data-tab="references">References</div>
+  </div>
+
+  <!-- ── CARD ── -->
+  <div class="card">
+
+    <!-- ── ABOUT ── -->
+    <div class="panel active" id="tab-about">
+      <div class="panel-inner">
+        <div class="section-heading">About <em>me</em></div>
+
+        <div class="about-intro">
+          Computer Engineering senior at Auburn University graduating Spring 2026. I have hands-on experience in embedded firmware, FPGA design, and digital systems — building real-time STM32 applications in C/C++, deploying Verilog-based systems on FPGA, and leading motor control firmware for a search-and-rescue rover. I've worked consistently since high school across shift leadership and customer-facing roles, building the communication and reliability habits that carry into every engineering project. I'm driven by doing good work and building things that actually function in the real world.
+        </div>
+
+        <div class="about-cards">
+          <div class="about-card">
+            <div class="about-card-icon">⚙️</div>
+            <div class="about-card-title">Embedded Systems</div>
+            <div class="about-card-sub">STM32, FPGA, C/C++, Arm Assembly</div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">🎓</div>
+            <div class="about-card-title">Auburn ECE</div>
+            <div class="about-card-sub">3.62 GPA · 4.0 Last Semester · Spring 2026</div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">🔧</div>
+            <div class="about-card-title">Key Projects</div>
+            <div class="about-card-sub">T-REx Rover, FPGA Reaction System, C++ Data Analyzer</div>
+          </div>
+        </div>
+
+        <div class="seeking-box">
+          <div class="seeking-title">Currently Seeking</div>
+          <div class="seeking-text">Open to full-time roles in Embedded Systems Engineering, Hardware Engineering, or Computer Engineering starting Spring 2026. Located in Auburn, AL — open to relocation.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── EDUCATION ── -->
+    <div class="panel" id="tab-education">
+      <div class="panel-inner">
+
+        <div class="school-block">
+          <div>
+            <div class="school-name">Auburn University</div>
+            <div class="school-degree">Bachelor of Computer Engineering &nbsp;·&nbsp; Auburn, AL</div>
+          </div>
+          <div class="school-right">
+            <div class="school-grad">Graduating Spring 2026</div>
+            <div class="gpa-row">
+              <div class="gpa-box">
+                <div class="gpa-val">3.62</div>
+                <div class="gpa-label">Cumulative GPA</div>
+              </div>
+              <div class="gpa-box">
+                <div class="gpa-val">4.0</div>
+                <div class="gpa-label">Last Semester</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <hr class="divider">
+
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div class="coursework-title" style="margin-bottom:0;">Relevant Coursework</div>
+          <button class="cw-btn" onclick="document.getElementById('cw-modal').classList.add('open')">View Full Coursework ↗</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- COURSEWORK MODAL -->
+    <div class="cw-modal-overlay" id="cw-modal" onclick="if(event.target===this)this.classList.remove('open')">
+      <div class="cw-modal-box">
+        <div class="cw-modal-header">
+          <div>
+            <div class="cw-modal-title">Relevant Coursework</div>
+            <div class="cw-modal-sub">Auburn University &middot; Bachelor of Computer Engineering</div>
+          </div>
+          <button class="cw-modal-close" onclick="document.getElementById('cw-modal').classList.remove('open')">&#x2715;</button>
+        </div>
+        <div class="cw-modal-body">
+          <div class="cw-grid">
+            <div class="cw-group">
+              <div class="cw-group-title">Mathematics &amp; Sciences</div>
+              <ul class="cw-list">
+                <li><span class="cw-name">Calculus I</span><span class="cw-code">MATH 1610</span></li>
+                <li><span class="cw-name">Calculus II</span><span class="cw-code">MATH 1620</span></li>
+                <li><span class="cw-name">Calculus III</span><span class="cw-code">MATH 2630</span></li>
+                <li><span class="cw-name">Topics in Linear Algebra</span><span class="cw-code">MATH 2660</span></li>
+                <li><span class="cw-name">Linear Differential Equations</span><span class="cw-code">MATH 2650</span></li>
+                <li><span class="cw-name">Engineering Physics I &amp; II</span><span class="cw-code">PHYS 1600 / 1610</span></li>
+              </ul>
+            </div>
+            <div class="cw-group">
+              <div class="cw-group-title">Electrical Engineering</div>
+              <ul class="cw-list">
+                <li><span class="cw-name">Electric Circuit Analysis</span><span class="cw-code">ELEC 2110</span></li>
+                <li><span class="cw-name">Digital Logic Circuits</span><span class="cw-code">ELEC 2200</span></li>
+                <li><span class="cw-name">Signals and Systems</span><span class="cw-code">ELEC 2120</span></li>
+                <li><span class="cw-name">Digital Electronics</span><span class="cw-code">ELEC 2210</span></li>
+                <li><span class="cw-name">Computer Systems</span><span class="cw-code">ELEC 2220</span></li>
+                <li><span class="cw-name">Random Signals and Systems</span><span class="cw-code">ELEC 3800</span></li>
+                <li><span class="cw-name">Digital Integrated Circuits</span><span class="cw-code">ELEC 5250</span></li>
+                <li><span class="cw-name">Info Networks and Technology</span><span class="cw-code">ELEC 5220</span></li>
+              </ul>
+            </div>
+            <div class="cw-group">
+              <div class="cw-group-title">Embedded Systems &amp; Hardware</div>
+              <ul class="cw-list">
+                <li><span class="cw-name">Embedded System Design Lab</span><span class="cw-code">ELEC 3050</span></li>
+                <li><span class="cw-name">Digital System Design (FPGA)</span><span class="cw-code">ELEC 4200</span></li>
+                <li><span class="cw-name">Computer Architecture and Design</span><span class="cw-code">ELEC 5200</span></li>
+                <li><span class="cw-name">Capstone Design I</span><span class="cw-code">ELEC 4010</span></li>
+                <li><span class="cw-name">Capstone Design II</span><span class="cw-code">ELEC 4020 <span class="cw-inprogress">&middot; In Progress</span></span></li>
+              </ul>
+            </div>
+            <div class="cw-group">
+              <div class="cw-group-title">Software &amp; Computing</div>
+              <ul class="cw-list">
+                <li><span class="cw-name">Fundamentals of Computing I &amp; II</span><span class="cw-code">COMP 1210 / 2210</span></li>
+                <li><span class="cw-name">Software Construction</span><span class="cw-code">COMP 2710</span></li>
+                <li><span class="cw-name">Discrete Structures</span><span class="cw-code">COMP 2240</span></li>
+                <li><span class="cw-name">Intro to Operating Systems</span><span class="cw-code">COMP 3500</span></li>
+                <li><span class="cw-name">Introduction to Algorithms</span><span class="cw-code">COMP 3270</span></li>
+                <li><span class="cw-name">Engineering Economy</span><span class="cw-code">INSY 3600 <span class="cw-inprogress">&middot; In Progress</span></span></li>
+              </ul>
+            </div>
+            <div class="cw-group cw-group--highlight">
+              <div class="cw-group-title">AI &amp; Advanced <span class="cw-inprogress" style="font-weight:400;">(In Progress &mdash; Spring 2026)</span></div>
+              <ul class="cw-list">
+                <li><span class="cw-name">Artificial Intelligence</span><span class="cw-code">COMP 5600</span></li>
+                <li><span class="cw-name">Data Mining</span><span class="cw-code">COMP 5130</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ── SKILLS ── -->
+    <div class="panel" id="tab-skills">
+      <div class="panel-inner">
+        <div class="section-heading">Technical <em>skills &amp; tools</em></div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Programming Languages</div>
+          <div class="skill-chips">
+            <span class="chip">Java</span><span class="chip">C++</span><span class="chip">C</span>
+            <span class="chip">Python</span><span class="chip">MATLAB</span><span class="chip">Arm Assembly</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">HDL &amp; Digital Design</div>
+          <div class="skill-chips">
+            <span class="chip">Verilog</span><span class="chip">SystemVerilog</span>
+            <span class="chip">VHDL</span><span class="chip">Testbench Generation</span><span class="chip">FPGA</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Software &amp; Tools</div>
+          <div class="skill-chips">
+            <span class="chip">STM32CubeIDE</span><span class="chip">LTSpice</span>
+            <span class="chip">MultiSim</span><span class="chip">Git</span><span class="chip">Microsoft Office Suite</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Hardware &amp; Systems</div>
+          <div class="skill-chips">
+            <span class="chip">Embedded Control Systems</span><span class="chip">Circuit Debugging</span>
+            <span class="chip">Schematic Capture</span><span class="chip">PWM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── EXPERIENCE ── -->
+    <div class="panel" id="tab-experience">
+      <div class="panel-inner">
+        <div class="section-heading">Professional <em>experience</em></div>
+
+        <div class="exp-entry">
+          <div>
+            <div class="exp-date-range">Oct 2022<br>Present</div>
+            <div class="exp-loc">Auburn, AL</div>
+          </div>
+          <div>
+            <div class="exp-co">Domino's Pizza</div>
+            <div class="exp-role-label">Driver &amp; Shift Lead</div>
+            <ul class="exp-bullets">
+              <li>Led and mentored junior team members, enhancing operational efficiency and accuracy.</li>
+              <li>Tracked delivery metrics and optimized routes to improve efficiency and customer satisfaction.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-entry">
+          <div>
+            <div class="exp-date-range">May 2023<br>Present</div>
+            <div class="exp-loc">Tallahassee, FL</div>
+          </div>
+          <div>
+            <div class="exp-co">Lofty Pursuits</div>
+            <div class="exp-role-label">Team Member</div>
+            <ul class="exp-bullets">
+              <li>Provided exceptional customer service in a fast-paced environment with clear communication.</li>
+              <li>Enhanced multitasking skills managing inventory restocking and general maintenance simultaneously.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-entry">
+          <div>
+            <div class="exp-date-range">Oct 2020<br>Jun 2021</div>
+            <div class="exp-loc">Tallahassee, FL</div>
+          </div>
+          <div>
+            <div class="exp-co">Chick-fil-A</div>
+            <div class="exp-role-label">Front &amp; Back of House Team Member</div>
+            <ul class="exp-bullets">
+              <li>Contributed positively to team operations, supporting leadership beyond initial responsibilities.</li>
+              <li>Ensured customer satisfaction through proactive service and maintaining cleanliness and efficiency.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── PROJECTS ── -->
+    <div class="panel" id="tab-projects">
+      <div class="panel-inner">
+        <div class="section-heading">Project <em>experience</em></div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <div class="proj-title">T-REx Thermal Search-and-Rescue Rover</div>
+            <div class="proj-num">01</div>
+          </div>
+          <div class="proj-desc">Motor control firmware for a remote-operated search-and-rescue rover. Implemented PWM via hardware timers for precise motor speed and direction control. Integrated wireless telemetry enabling real-time command reception and sensor data feedback including GPS, IMU, and battery status.</div>
+          <div class="proj-tech">
+            <span class="tech-badge">STM32CubeIDE</span><span class="tech-badge">C</span>
+            <span class="tech-badge">PWM</span><span class="tech-badge">IMU</span>
+            <span class="tech-badge">GPS</span><span class="tech-badge">Embedded</span>
+          </div>
+          <div style="margin-top:12px;">
+            <a href="https://github.com/CollierBlair/Capstone" target="_blank" rel="noopener" class="proj-github-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <div class="proj-title">Digital Reaction Time Measurement System</div>
+            <div class="proj-num">02</div>
+          </div>
+          <div class="proj-desc">Developed a digital system in Verilog on an FPGA board to measure and compare two users' reaction times, outputting the time difference and winner via display logic.</div>
+          <div class="proj-tech">
+            <span class="tech-badge">Verilog</span><span class="tech-badge">FPGA</span><span class="tech-badge">Digital Logic</span>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <div class="proj-title">Data Analyzer Application</div>
+            <div class="proj-num">03</div>
+          </div>
+          <div class="proj-desc">C++ application to read and analyze data from multiple input files, implementing sorting algorithms and statistical computations (mean, median, mode). Managed data integrity through robust error handling with Git branching and version control.</div>
+          <div class="proj-tech">
+            <span class="tech-badge">C++</span><span class="tech-badge">Sorting Algorithms</span>
+            <span class="tech-badge">Statistics</span><span class="tech-badge">Git</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── REFERENCES ── -->
+    <div class="panel" id="tab-references">
+      <div class="panel-inner">
+        <div class="section-heading">Professional <em>references</em></div>
+
+        <div class="ref-cards">
+
+          <div class="ref-card">
+            <div class="ref-initials">AL</div>
+            <div class="ref-body">
+              <div class="ref-name">Amelia Long</div>
+              <div class="ref-role">Assistant Manager — Domino's Pizza, Auburn, AL</div>
+              <div class="ref-relationship">Direct supervisor; oversaw my work as a Driver &amp; Shift Lead</div>
+              <div class="ref-contact">
+                <a href="mailto:amelialo775@gmail.com">✉ amelialo775@gmail.com</a>
+                <a href="tel:3344984194">📞 (334) 498-4194</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="ref-card">
+            <div class="ref-initials">TM</div>
+            <div class="ref-body">
+              <div class="ref-name">Tiffany McNabb</div>
+              <div class="ref-role">FOH Manager — Lofty Pursuits, Tallahassee, FL</div>
+              <div class="ref-relationship">Direct supervisor; oversaw my work as a Team Member</div>
+              <div class="ref-contact">
+                <a href="mailto:tiffmcnabb14@gmail.com">✉ tiffmcnabb14@gmail.com</a>
+                <a href="tel:8508903614">📞 (850) 890-3614</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="ref-card">
+            <div class="ref-initials">BD</div>
+            <div class="ref-body">
+              <div class="ref-name">Brendan Draper</div>
+              <div class="ref-role">Operations Manager — Independent Green Technologies, Tallahassee, FL</div>
+              <div class="ref-relationship">Mentor</div>
+              <div class="ref-contact">
+                <a href="mailto:bdraper.bdtech@gmail.com">✉ bdraper.bdtech@gmail.com</a>
+                <a href="tel:8505191339">📞 (850) 519-1339</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /card -->
+</div><!-- /frame -->
+
+<scri
