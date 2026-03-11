@@ -20,7 +20,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background: var(--off);
+      background: var(--white);
       color: var(--black);
       font-family: var(--sans);
       font-size: 15px;
@@ -30,15 +30,15 @@
 
     /* ── FRAME ── */
     .frame {
-      max-width: 860px;
-      margin: 40px auto 80px;
+      max-width: 100%;
+      margin: 0;
       filter: drop-shadow(0 8px 40px rgba(0,0,0,0.13));
     }
 
     /* ── HEADER ── */
     .site-header {
       background: #1a2332;
-      border-radius: 6px 6px 0 0;
+      border-radius: 0;
       padding: 28px 40px 26px;
       display: flex;
       align-items: center;
@@ -175,7 +175,7 @@
       background: var(--white);
       border: 1.5px solid var(--border);
       border-top: none;
-      border-radius: 0 0 6px 6px;
+      border-radius: 0;
       min-height: 500px;
     }
 
@@ -734,7 +734,7 @@
       <div class="header-name">Jakob <em>P.</em> Rabon</div>
       <div class="header-major">Computer Engineering &nbsp;·&nbsp; Auburn University &nbsp;·&nbsp; Graduation Spring 2026</div>
       <div class="header-row">
-        <a href="mailto:jrabon03@gmail.com">✉ jrabon03@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#b2d8c0d3d0dddc8281f2d5dfd3dbde9cd1dddf">✉ <span class="__cf_email__" data-cfemail="e8829a898a8786d8dba88f85898184c68b8785">[email&#160;protected]</span></a>
         <span class="header-sep">·</span>
         <a href="tel:8507561298">📞 (850) 756-1298</a>
         <span class="header-sep">·</span>
@@ -1110,7 +1110,7 @@
               <div class="ref-role">Assistant Manager — Domino's Pizza, Auburn, AL</div>
               <div class="ref-relationship">Direct supervisor; oversaw my work as a Driver &amp; Shift Lead</div>
               <div class="ref-contact">
-                <a href="mailto:amelialo775@gmail.com">✉ amelialo775@gmail.com</a>
+                <a href="/cdn-cgi/l/email-protection#c2a3afa7aeaba3aeadf5f5f782a5afa3abaeeca1adaf">✉ <span class="__cf_email__" data-cfemail="5938343c35303835366e6e6c193e34383035773a3634">[email&#160;protected]</span></a>
                 <a href="tel:3344984194">📞 (334) 498-4194</a>
               </div>
             </div>
@@ -1123,7 +1123,7 @@
               <div class="ref-role">FOH Manager — Lofty Pursuits, Tallahassee, FL</div>
               <div class="ref-relationship">Direct supervisor; oversaw my work as a Team Member</div>
               <div class="ref-contact">
-                <a href="mailto:tiffmcnabb14@gmail.com">✉ tiffmcnabb14@gmail.com</a>
+                <a href="/cdn-cgi/l/email-protection#dbafb2bdbdb6b8b5bab9b9eaef9bbcb6bab2b7f5b8b4b6">✉ <span class="__cf_email__" data-cfemail="81f5e8e7e7ece2efe0e3e3b0b5c1e6ece0e8edafe2eeec">[email&#160;protected]</span></a>
                 <a href="tel:8508903614">📞 (850) 890-3614</a>
               </div>
             </div>
@@ -1136,7 +1136,7 @@
               <div class="ref-role">Operations Manager — Independent Green Technologies, Tallahassee, FL</div>
               <div class="ref-relationship">Mentor</div>
               <div class="ref-contact">
-                <a href="mailto:bdraper.bdtech@gmail.com">&#9993; bdraper.bdtech@gmail.com</a>
+                <a href="/cdn-cgi/l/email-protection#d6b4b2a4b7a6b3a4f8b4b2a2b3b5be96b1bbb7bfbaf8b5b9bb">&#9993; <span class="__cf_email__" data-cfemail="54363026352431267a36302031373c143339353d387a373b39">[email&#160;protected]</span></a>
                 <a href="tel:8505191339">&#128222; (850) 519-1339</a>
               </div>
             </div>
@@ -1158,7 +1158,7 @@
       <div class="skill-popup-desc" id="skill-popup-desc"></div>
     </div>
   </div>
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const skillDescriptions = {
     'Java': 'Object-oriented programming language used in coursework for data structures, algorithms, and software construction projects.',
     'C++': 'Used for building a data analysis application with sorting algorithms, file I/O, statistics computations, and robust error handling.',
@@ -1215,20 +1215,4 @@
       document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
       document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
       tab.classList.add('active');
-      document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
-    });
-  });
-
-  document.getElementById('cw-btn') && document.getElementById('cw-btn').addEventListener('click', function() {
-    document.getElementById('cw-modal').classList.add('open');
-  });
-  document.getElementById('cw-close') && document.getElementById('cw-close').addEventListener('click', function() {
-    document.getElementById('cw-modal').classList.remove('open');
-  });
-  document.getElementById('cw-modal') && document.getElementById('cw-modal').addEventListener('click', function(e) {
-    if (e.target === this) this.classList.remove('open');
-  });
-</script>
-
-</body>
-</html>
+      
